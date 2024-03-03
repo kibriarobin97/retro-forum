@@ -2,15 +2,18 @@ const loadData = async (searchText = 'comedy') => {
     const res = await fetch(`https://openapi.programming-hero.com/api/retro-forum/posts?category=${searchText}`);
     const data = await res.json();
     const post = data.posts;
+    
     displayPost(post);
 }
 
 const displayPost = (data) => {
+    
     const postContainer = document.getElementById('post-container');
     postContainer.textContent = '';
 
     data.forEach(post => {
-
+        
+        // cardButton(post);
         let statusBadge = '';
         if (post.isActive) {
             statusBadge = `<img src="images/Status.png" alt=""></img>`;
@@ -55,7 +58,7 @@ const displayPost = (data) => {
                     </div>
                 </div>
                 <div class="">
-                    <button onclick="cardButton()"><img src="images/Group 40106.png" alt=""></button>
+                    <button onclick="cardButton('${post.title}', '${post.view_count}')"><img src="images/Group 40106.png" alt=""></button>
                 </div>
             </div>
         </div>
@@ -72,7 +75,7 @@ const loadLatestPost = async () => {
     const res = await fetch('https://openapi.programming-hero.com/api/retro-forum/latest-posts');
     const data = await res.json();
     displayLatestPost(data);
-    cardButton(data);
+    
 }
 
 const displayLatestPost = (latestPost) => {
@@ -127,8 +130,8 @@ const displayLatestPost = (latestPost) => {
 
 loadLatestPost();
 
-const handleSearch = () => {
 
+const handleSearch = () => {
     const searchField = document.getElementById('search-field');
     const searchText = searchField.value;
     loadingSpinner(true);
@@ -145,24 +148,18 @@ const loadingSpinner = (isLoading) => {
     }
 }
 
-    let titleCount = document.getElementById('title-count')
-    titleCount=0;
-const cardButton = () => {
+let titleCount = parseInt(document.getElementById('title-count').innerText);
+const cardButton = (title, view) => {
     titleCount=titleCount+1;
-    const postTitle = document.getElementById('post-title')
-    const postTitleText = postTitle.innerText;
-
-    const postView = document.getElementById('post-view');
-    const postViewText = postView.innerText;
-
+    document.getElementById('title-count').innerText=titleCount;
     const markReadTitle = document.getElementById('mark-read-container-title');
     const div = document.createElement('div')
     div.classList = `flex justify-between items-center gap-5 p-5`;
     div.innerHTML = `
-        <h3 class="font-semibold">${postTitleText}</h3>
+        <h3 class="font-semibold">${title}</h3>
         <div id="mark-read-container-view" class="flex items-center gap-2">
             <img src="images/Vector (1).png" alt="">
-            <p>${postViewText}</p>
+            <p>${view}</p>
         </div>
     `;
     markReadTitle.appendChild(div);
