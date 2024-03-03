@@ -1,12 +1,13 @@
-const loadData = async () => {
-    const res = await fetch('https://openapi.programming-hero.com/api/retro-forum/posts');
+const loadData = async (searchText='comedy') => {
+    const res = await fetch(`https://openapi.programming-hero.com/api/retro-forum/posts?category=${searchText}`);
     const data = await res.json();
     const post = data.posts;
     displayPost(post);
 }
 
 const displayPost = (data) => {
-    const postContainer = document.getElementById('post-container')
+    const postContainer = document.getElementById('post-container');
+    postContainer.textContent = '';
 
     data.forEach(post => {
 
@@ -61,6 +62,7 @@ const displayPost = (data) => {
         `;
         postContainer.appendChild(div);
     });
+    loadingSpinner(false);
 }
 
 
@@ -80,7 +82,7 @@ const displayLatestPost = (latestPost) => {
 
         let postedDate = '';
         if (latPost.author?.posted_date) {
-            postedDate = `<p>${latPost.author?.posted_date}</p>`;
+            postedDate = `${latPost.author?.posted_date}`;
         }
         else {
             postedDate = 'No Publish Date';
@@ -88,7 +90,7 @@ const displayLatestPost = (latestPost) => {
 
         let desig = '';
         if (latPost.author?.designation) {
-            desig = `<p class="text-[#12132D99]">${latPost.author?.designation}</p>`
+            desig = `${latPost.author?.designation}`
         }
         else {
             desig = 'Unknown';
@@ -118,7 +120,32 @@ const displayLatestPost = (latestPost) => {
             </div>
         `;
         cardContainer.appendChild(div);
-    })
+    });
+    
 }
 
 loadLatestPost();
+
+// const searchData = async (searchText) => {
+//     const res = await fetch(`https://openapi.programming-hero.com/api/retro-forum/posts?category=${searchText}`);
+//     const data = await res.json();
+//     handleSearch(data);
+// }
+
+const handleSearch = () => {
+
+    const searchField = document.getElementById('search-field');
+    const searchText = searchField.value;
+    loadingSpinner(true);
+    loadData(searchText);
+}
+
+const loadingSpinner = (isLoading) => {
+    const spinner = document.getElementById('loading-spinner');
+    if (isLoading) {
+        spinner.classList.remove('hidden');
+    }
+    else{
+        spinner.classList.add('hidden');
+    }
+}
