@@ -15,6 +15,8 @@
     <link href="https://fonts.googleapis.com/css2?family=Mulish:ital,wght@0,200..1000;1,200..1000&display=swap"
         rel="stylesheet">
 
+    <!-- font awesome kit -->
+    <script src="https://kit.fontawesome.com/5ee21b8d95.js" crossorigin="anonymous"></script>
     <style>
         .font-mulish {
             font-family: "Mulish", sans-serif;
@@ -44,7 +46,7 @@
                         <div class="tooltip" data-tip="Others">
                             <li><button><img src="images/Frame 5.png" alt=""></button></li>
                         </div>
-                        <button class="bg-[#797DFC] text-white px-5 py-3 rounded-3xl font-bold">Sign In</button>
+                        <button class="bg-[#797DFC] text-white px-5 py-3 rounded-3xl font-bold hover:bg-indigo-700 duration-500">Sign In</button>
                     </ul>
                 </div>
             </div>
@@ -62,7 +64,8 @@
                         <div class="flex gap-0">
                             <input id="search-field" type="text" placeholder="search here anything"
                                 class="text-black px-3 py-2 rounded-l-full" />
-                            <button onclick="handleSearch()" class="bg-[#797DFC] text-white px-3 py-2 font-bold rounded-r-full">Search</button>
+                            <button onclick="handleSearch()"
+                                class="bg-[#797DFC] text-white px-3 py-2 font-bold rounded-r-full hover:bg-indigo-700 duration-500">Search</button>
                         </div>
                     </div>
 
@@ -77,31 +80,31 @@
         <section class="my-16">
             <div class="space-y-3">
                 <h2 class="text-4xl text-center font-extrabold">Let's Discuss</h2>
-                <p class=" text-[#12132D99] text-center w-3/6 mx-auto">Yes, you can run unit tests and view the results
-                    directly within the app. The
-                    integrated testing features allow for a streamlined.</p>
+                <p class=" text-[#12132D99] text-center w-3/6 mx-auto">Here, every thread is a journey back in time, where memories are cherished, and the past is alive and kicking.</p>
             </div>
             <div id="loading-spinner" class="mt-8 text-center hidden">
                 <span class="loading loading-spinner text-primary"></span>
             </div>
-                <div class="flex flex-col lg:flex-row items-start gap-5 my-14">
-                    <div id="post-container" class="grid grid-cols-1">
-                 
-                    </div>
-                    <div id="" class="bg-[#12132D0D] p-5 mt-3 rounded-xl">
-                        <div class="flex justify-between items-center gap-5 mb-5">
+            <div class="flex flex-col lg:flex-row items-start gap-5 my-14">
+                <div id="post-container" class="grid grid-cols-1">
+
+                </div>
+                <div id="" class="bg-[#12132D0D] p-5 mt-3 rounded-xl">
+                    <div class="flex justify-between items-center gap-10 mb-5">
+                        <div>
                             <h2 class="text-xl font-bold">Title</h2>
-                            <div class="flex items-center gap-1">
-                                <img src="images/Frame (7).png" alt="">
-                                <p class="text-[#12132D99]">Mark as Read (<span id="title-count" class="">0</span>)</p>
-                            </div>
                         </div>
-                        <div id="mark-read-container-title" class="bg-white rounded-lg space-y-3">
-                            
+                        <div class="flex items-center gap-1">
+                            <img src="images/Frame (7).png" alt="">
+                            <p class="text-[#12132D99]">Mark as Read (<span id="title-count" class="">0</span>)</p>
                         </div>
+                    </div>
+                    <div id="mark-read-container-title" class="bg-white rounded-lg mb-3">
+
                     </div>
                 </div>
-            
+            </div>
+
         </section>
 
         <section class="my-16">
@@ -111,7 +114,7 @@
                         <h1 class="text-4xl font-extrabold">Join Our Forum</h1>
                         <p class="text-[#FFFFFFCC]">Share your favorite opinion and win and wp forum coffee mug! Yes,
                             you can run unit tests and view the results directly within the app.</p>
-                        <button class="bg-[#797DFC] text-white px-5 py-3 rounded-3xl font-bold">Registered Now</button>
+                        <button class="bg-[#797DFC] text-white px-5 py-3 rounded-3xl font-bold hover:bg-indigo-700 duration-500">Registered Now</button>
                     </div>
                     <div>
                         <img src="images/joinforum.png" alt="">
@@ -123,19 +126,35 @@
         <section>
             <div class="space-y-3">
                 <h2 class="text-4xl text-center font-extrabold">Latest Posts</h2>
-                <p class=" text-[#12132D99] text-center w-3/6 mx-auto">Yes, you can run unit tests and view the results
-                    directly within the app. The
-                    integrated testing features allow for a streamlined.</p>
+                <p class=" text-[#12132D99] text-center w-3/6 mx-auto"> Here, members gather to share their latest discoveries, musings, and adventures in the world of all things retro.</p>
             </div>
-            
-                <div id="card-container" class="grid grid-cols-1 lg:grid-cols-3 gap-3 my-14">
-                    
-                </div>
-            
+
+            <div id="card-container" class="grid grid-cols-1 lg:grid-cols-3 gap-3 my-14">
+
+            </div>
+
         </section>
     </main>
-    <footer>
-
+    <footer class="bg-[#F3F3F5]">
+        <section class="w-4/5 mx-auto py-10">
+            <div class="space-y-4 border-b-2 border-[#30325E1A]">
+                <div class="flex justify-center items-center">
+                    <img src="images/logo.png" alt="">
+                </div>
+                <p class="text-[#12132DB3] w-3/5 mx-auto text-center">In the vibrant landscape of retro forums,
+                    enthusiasts from around the globe gather to reminisce and celebrate the golden days of vintage
+                    technology, gaming, and pop culture.</p>
+                <div class="text-2xl flex justify-center items-center gap-5 pb-5">
+                    <i class="fa-brands fa-square-facebook"></i>
+                    <i class="fa-brands fa-square-instagram"></i>
+                    <i class="fa-brands fa-x-twitter"></i>
+                    <i class="fa-brands fa-linkedin"></i>
+                </div>
+            </div>
+            <div class="text-center mt-5">
+                <p class="text-[#12132D80]">&copy; 2024, All Rights Reserved.</p>
+            </div>
+        </section>
     </footer>
     <script src="js/retro.js"></script>
 </body>
