@@ -1,4 +1,4 @@
-const loadData = async (searchText='comedy') => {
+const loadData = async (searchText = 'comedy') => {
     const res = await fetch(`https://openapi.programming-hero.com/api/retro-forum/posts?category=${searchText}`);
     const data = await res.json();
     const post = data.posts;
@@ -36,7 +36,7 @@ const displayPost = (data) => {
                     <p class="font-semibold"><span>#</span>${post.category}</p>
                     <p class="font-semibold">Author: ${post.author.name}</p>
                 </div>
-                <h3 class="text-xl font-bold">${post.title}</h3>
+                <h3 id="post-title" class="text-xl font-bold">${post.title}</h3>
                 <p class="text-[#12132D99]">${post.description}</p>
             </div>
             <div class="flex justify-between items-center">
@@ -47,15 +47,15 @@ const displayPost = (data) => {
                     </div>
                     <div class="flex items-center gap-2">
                         <img src="images/Vector (1).png" alt="">
-                        <p>${post.view_count}</p>
+                        <p id="post-view">${post.view_count}</p>
                     </div>
                     <div class="flex items-center gap-2">
                         <img src="images/Group 18.png" alt="">
                         <p><span>${post.posted_time}</span> min</p>
                     </div>
                 </div>
-                <div>
-                    <button><img src="images/Group 40106.png" alt=""></button>
+                <div class="">
+                    <button onclick="cardButton()"><img src="images/Group 40106.png" alt=""></button>
                 </div>
             </div>
         </div>
@@ -66,12 +66,13 @@ const displayPost = (data) => {
 }
 
 
-loadData()
+loadData();
 
 const loadLatestPost = async () => {
     const res = await fetch('https://openapi.programming-hero.com/api/retro-forum/latest-posts');
     const data = await res.json();
     displayLatestPost(data);
+    cardButton(data);
 }
 
 const displayLatestPost = (latestPost) => {
@@ -121,16 +122,10 @@ const displayLatestPost = (latestPost) => {
         `;
         cardContainer.appendChild(div);
     });
-    
+
 }
 
 loadLatestPost();
-
-// const searchData = async (searchText) => {
-//     const res = await fetch(`https://openapi.programming-hero.com/api/retro-forum/posts?category=${searchText}`);
-//     const data = await res.json();
-//     handleSearch(data);
-// }
 
 const handleSearch = () => {
 
@@ -145,7 +140,30 @@ const loadingSpinner = (isLoading) => {
     if (isLoading) {
         spinner.classList.remove('hidden');
     }
-    else{
+    else {
         spinner.classList.add('hidden');
     }
+}
+
+    let titleCount = document.getElementById('title-count')
+    titleCount=0;
+const cardButton = () => {
+    titleCount=titleCount+1;
+    const postTitle = document.getElementById('post-title')
+    const postTitleText = postTitle.innerText;
+
+    const postView = document.getElementById('post-view');
+    const postViewText = postView.innerText;
+
+    const markReadTitle = document.getElementById('mark-read-container-title');
+    const div = document.createElement('div')
+    div.classList = `flex justify-between items-center gap-5 p-5`;
+    div.innerHTML = `
+        <h3 class="font-semibold">${postTitleText}</h3>
+        <div id="mark-read-container-view" class="flex items-center gap-2">
+            <img src="images/Vector (1).png" alt="">
+            <p>${postViewText}</p>
+        </div>
+    `;
+    markReadTitle.appendChild(div);
 }
