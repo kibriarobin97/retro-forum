@@ -1,18 +1,26 @@
-const loadData = async (searchText = 'comedy') => {
+const defaultShow = async () => {
+    const res = await fetch('https://openapi.programming-hero.com/api/retro-forum/posts');
+    const data = await res.json();
+    const allPost = data.posts;
+    displayPost(allPost);
+}
+
+
+const loadData = async (searchText) => {
     const res = await fetch(`https://openapi.programming-hero.com/api/retro-forum/posts?category=${searchText}`);
     const data = await res.json();
     const post = data.posts;
-    
+
     displayPost(post);
 }
 
 const displayPost = (data) => {
-    
+
     const postContainer = document.getElementById('post-container');
     postContainer.textContent = '';
 
     data.forEach(post => {
-        
+
         // cardButton(post);
         let statusBadge = '';
         if (post.isActive) {
@@ -58,7 +66,7 @@ const displayPost = (data) => {
                     </div>
                 </div>
                 <div class="">
-                    <button onclick="cardButton('${post.title}', '${post.view_count}')"><img src="images/Group 40106.png" alt=""></button>
+                    <button onclick="cardButton('${post.title.replace(/'/g, '')}', '${post.view_count}')"><img src="images/Group 40106.png" alt=""></button>
                 </div>
             </div>
         </div>
@@ -75,7 +83,7 @@ const loadLatestPost = async () => {
     const res = await fetch('https://openapi.programming-hero.com/api/retro-forum/latest-posts');
     const data = await res.json();
     displayLatestPost(data);
-    
+
 }
 
 const displayLatestPost = (latestPost) => {
@@ -150,13 +158,13 @@ const loadingSpinner = (isLoading) => {
 
 let titleCount = parseInt(document.getElementById('title-count').innerText);
 const cardButton = (title, view) => {
-    titleCount=titleCount+1;
-    document.getElementById('title-count').innerText=titleCount;
+    titleCount = titleCount + 1;
+    document.getElementById('title-count').innerText = titleCount;
     const markReadTitle = document.getElementById('mark-read-container-title');
     const div = document.createElement('div')
-    div.classList = `flex justify-between items-center gap-5 p-5`;
+    div.classList = `grid grid-cols-4 gap-5 items-center p-5`;
     div.innerHTML = `
-        <h3 class="font-semibold">${title}</h3>
+        <h3 class="font-semibold col-span-3">${title}</h3>
         <div id="mark-read-container-view" class="flex items-center gap-2">
             <img src="images/Vector (1).png" alt="">
             <p>${view}</p>
@@ -164,3 +172,6 @@ const cardButton = (title, view) => {
     `;
     markReadTitle.appendChild(div);
 }
+
+
+defaultShow();
